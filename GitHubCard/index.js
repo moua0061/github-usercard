@@ -1,14 +1,16 @@
+
+
 /*
   STEP 1: using axios, send a GET request to the following URL
     (replacing the placeholder with your Github name):
     https://api.github.com/users/<your name>
 */
-
+import axios from 'axios';
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
     data in order to use it to build your component function
-
+    https://api.github.com/users/moua0061
     Skip to STEP 3 (line 34).
 */
 
@@ -49,6 +51,26 @@ const followersArray = [];
       </div>
     </div>
 */
+const entryPoint = document.querySelector('.cards');
+
+function gitHubMaker (obj){
+
+  const classDiv = document.createElement('div'); //creating <div class="card">
+  classDiv.classList.add('card'); //adding class name to it
+
+  const imgSrc = document.createElement('img'); //creating <img src={image url of user} />
+  imgSrc.src = obj.url; //adding url 
+  classDiv.appendChild(imgSrc); //appending the img to the above div class=card
+
+  const divCardInfo = document.createElement('div'); //creating <div class="card-info">
+  divCardInfo.classList.add('card-info'); //add class name to it
+  classDiv.appendChild(divCardInfo); //appending it to the div class=card
+
+  const h3 = document.createElement('h3'); //creating <h3 class="name">{users name}</h3>
+  h3.classList.add('name'); //add class name to it
+  
+
+}
 
 /*
   List of LS Instructors Github username's:
