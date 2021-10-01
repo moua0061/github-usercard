@@ -6,6 +6,15 @@
     https://api.github.com/users/<your name>
 */
 import axios from 'axios';
+axios.get('https://api.github.com/users/moua0061') 
+  .then(resp => { 
+    //do something if success
+    console.log(resp);
+  })
+  .catch(err => {
+    //do something if failed
+  })
+
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
     github info! You will need to understand the structure of this
@@ -55,21 +64,51 @@ const entryPoint = document.querySelector('.cards');
 
 function gitHubMaker (obj){
 
-  const classDiv = document.createElement('div'); //creating <div class="card">
-  classDiv.classList.add('card'); //adding class name to it
+  const card = document.createElement('div');
+  card.classList.add('card');
 
-  const imgSrc = document.createElement('img'); //creating <img src={image url of user} />
-  imgSrc.src = obj.url; //adding url 
-  classDiv.appendChild(imgSrc); //appending the img to the above div class=card
+  const avatar = document.createElement('img');
+  avatar.src = obj.avatar_url;
+  card.appendChild(avatar);
 
-  const divCardInfo = document.createElement('div'); //creating <div class="card-info">
-  divCardInfo.classList.add('card-info'); //add class name to it
-  classDiv.appendChild(divCardInfo); //appending it to the div class=card
+  const cardInfo = document.createElement('div');
+  cardInfo.classList.add('card-info');
+  card.appendChild(cardInfo);
 
-  const h3 = document.createElement('h3'); //creating <h3 class="name">{users name}</h3>
-  h3.classList.add('name'); //add class name to it
-  
+  const name = document.createElement('h3');
+  name.classList.add('name');
+  name.textContent = obj.name;
+  cardInfo.appendChild(name);
 
+  const userName = document.createElement('p');
+  userName.classList.add('username');
+  userName.textContent = obj.login;
+  cardInfo.appendChild(userName);
+
+  const userLocation = document.createElement('p');
+  userLocation.textContent = obj.location;
+  cardInfo.appendChild(userLocation);
+
+  const userProfile = document.createElement('p');
+  userProfile.textContent = 'Profile:';
+  cardInfo.appendChild(userProfile);
+
+  const userUrl = document.createElement('a');
+  userUrl.href = obj.html_url;
+  userProfile.appendChild(userUrl);
+
+  const userFollowers = document.createElement('p');
+  userFollowers.textContent = obj.followers;
+  cardInfo.appendChild(userFollowers);
+
+  const userFollowing = document.createElement('p');
+  cardInfo.appendChild(userFollowing);
+
+  const userBio = document.createElement('p');
+  cardInfo.appendChild(userBio);
+
+
+  return classDiv;
 }
 
 /*
