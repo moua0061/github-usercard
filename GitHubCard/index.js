@@ -6,7 +6,16 @@
     https://api.github.com/users/<your name>
 */
 import axios from 'axios';
-axios.get('https://api.github.com/users/moua0061') 
+
+const followersArray = [
+  'tetondan',
+  'dustinmyers',
+  'justsml',
+  'luishrd',
+  'bigknell'
+];
+followersArray.forEach(e => {
+  axios.get(`https://api.github.com/users/${e}`) 
   .then(resp => { 
     //do something if success
     console.log(resp);
@@ -15,6 +24,19 @@ axios.get('https://api.github.com/users/moua0061')
   .catch(err => {
     //do something if failed
   })
+}
+
+)
+
+// axios.get('https://api.github.com/users/moua0061') 
+//   .then(resp => { 
+//     //do something if success
+//     console.log(resp);
+//     gitHubMaker(resp);  
+//   })
+//   .catch(err => {
+//     //do something if failed
+//   })
 
 /*
   STEP 2: Inspect and study the data coming back, this is YOUR
@@ -40,7 +62,6 @@ axios.get('https://api.github.com/users/moua0061')
     user, and adding that card to the DOM.
 */
 
-const followersArray = [];
 
 /*
   STEP 3: Create a function that accepts a single object as its only argument.
@@ -101,11 +122,11 @@ function gitHubMaker (obj){
   userProfile.appendChild(userUrl);
 
   const userFollowers = document.createElement('p');
-  userFollowers.textContent = obj.data.followers;
+  userFollowers.textContent = `Follers: ${obj.data.followers}`;
   cardInfo.appendChild(userFollowers);
 
   const userFollowing = document.createElement('p');
-  userFollowing.textContent = obj.data.following;
+  userFollowing.textContent = `Followering: ${obj.data.following}`;
   cardInfo.appendChild(userFollowing);
 
   const userBio = document.createElement('p');
