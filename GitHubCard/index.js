@@ -10,6 +10,7 @@ axios.get('https://api.github.com/users/moua0061')
   .then(resp => { 
     //do something if success
     console.log(resp);
+    gitHubMaker(resp);  
   })
   .catch(err => {
     //do something if failed
@@ -66,9 +67,10 @@ function gitHubMaker (obj){
 
   const card = document.createElement('div');
   card.classList.add('card');
+  entryPoint.appendChild(card);
 
   const avatar = document.createElement('img');
-  avatar.src = obj.avatar_url;
+  avatar.src = obj.data.avatar_url;
   card.appendChild(avatar);
 
   const cardInfo = document.createElement('div');
@@ -77,16 +79,16 @@ function gitHubMaker (obj){
 
   const name = document.createElement('h3');
   name.classList.add('name');
-  name.textContent = obj.name;
+  name.textContent = obj.data.name;
   cardInfo.appendChild(name);
 
   const userName = document.createElement('p');
   userName.classList.add('username');
-  userName.textContent = obj.login;
+  userName.textContent = obj.data.login;
   cardInfo.appendChild(userName);
 
   const userLocation = document.createElement('p');
-  userLocation.textContent = obj.location;
+  userLocation.textContent = obj.data.location;
   cardInfo.appendChild(userLocation);
 
   const userProfile = document.createElement('p');
@@ -94,22 +96,27 @@ function gitHubMaker (obj){
   cardInfo.appendChild(userProfile);
 
   const userUrl = document.createElement('a');
-  userUrl.href = obj.html_url;
+  userUrl.href = obj.data.html_url;
+  userUrl.textContent = obj.data.html_url;
   userProfile.appendChild(userUrl);
 
   const userFollowers = document.createElement('p');
-  userFollowers.textContent = obj.followers;
+  userFollowers.textContent = obj.data.followers;
   cardInfo.appendChild(userFollowers);
 
   const userFollowing = document.createElement('p');
+  userFollowing.textContent = obj.data.following;
   cardInfo.appendChild(userFollowing);
 
   const userBio = document.createElement('p');
+  userBio.textContent = obj.data.bio;
   cardInfo.appendChild(userBio);
 
 
-  return classDiv;
+  return card;
 }
+
+
 
 /*
   List of LS Instructors Github username's:
